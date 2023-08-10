@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <script src="./bundle.js" defer></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+    <div class="navbar">
+        <button class="homepage"><h1>Weather</h1></button>
+        <div class="searchbar">
+            <form action="#" class="search">
+                <input type="search" name="search" id="search">
+                <button class="search" type="submit">
+                    <span class="material-symbols-outlined">
+                    search
+                    </span>
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="content">
+        <div class="container current">
+            <h3 class="icon"></h3>
+            <h3 class="location">Paris</h3>
+            <h2 class="cur-temp"><span></span>30°</h2>
+            <h3 class="cur-condition">Sunny</h3>
+            <h3 class="hi-lo">Lo:<span class="lo"></span> Hi:<span class="hi"></span></h3>
+        </div>
+        <div class="container details">
+            <div class="curcondition-details">
+                <div class="humidity">
+                    Humidity
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 -960 960 960" width="40"><path d="M580.118-250Q601-250 615.5-264.618q14.5-14.617 14.5-35.5Q630-321 615.382-335.5q-14.617-14.5-35.5-14.5Q559-350 544.5-335.382q-14.5 14.617-14.5 35.5Q530-279 544.618-264.5q14.617 14.5 35.5 14.5ZM357-277q9 9 21 9t21-9l204-204q9-9 9-21t-9.053-21q-9.052-9-21.5-9Q569-532 560-523L357-319q-9 8.8-9 20.9 0 12.1 9 21.1Zm23.118-173Q401-450 415.5-464.618q14.5-14.617 14.5-35.5Q430-521 415.382-535.5q-14.617-14.5-35.5-14.5Q359-550 344.5-535.382q-14.5 14.617-14.5 35.5Q330-479 344.618-464.5q14.617 14.5 35.5 14.5ZM480-80q-137 0-228.5-94T160-408q0-64 29-127.042t72.5-121Q305-714 355.5-764.5T450-854q7-6 14.57-8.5t15.5-2.5q7.93 0 15.43 2.5T510-854q44 39 94.615 89.701 50.616 50.701 94 108.5Q742-598 771-535q29 63 29 127 0 140-91.5 234T480-80Zm0-60q112 0 186-76.5t74-191.822Q740-487 673.5-587.5T480-800Q353-688 286.5-587.5T220-408.322Q220-293 294-216.5T480-140Zm0-340Z"/></svg>
+                        <span>23%</span>
+                    </div>
+                </div>
+                <div class="chance-of-rain">
+                    Chance of Rain
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M480-80q-137 0-228.5-94T160-408q0-64 29-127t72.5-121q43.5-58 94-108.5T450-854q7-6 14.5-8.5T480-865q8 0 15.5 2.5T510-854q44 39 94.5 89.5t94 108.5Q742-598 771-535t29 127q0 140-91.5 234T480-80Zm0-60q112 0 186-76.5T740-408q0-79-66.5-179.5T480-800Q353-688 286.5-587.5T220-408q0 115 74 191.5T480-140Zm0-340Zm-1 272q16 0 24.5-5.5T512-230q0-11-8.5-17t-25.5-6q-42 0-85.5-26.5T337-373q-2-9-9-14.5t-15-5.5q-11 0-17 8.5t-4 17.5q15 84 71 121.5T479-208Z"/></svg>
+                        <span>20%</span>
+                    </div>
+                </div>
+                <div class="feels-like">
+                    Feels like
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M480-120q-75.53 0-128.765-53.235Q298-226.47 298-302q0-49.099 24-91.55Q346-436 388-462v-286q0-38.333 26.765-65.167 26.764-26.833 65-26.833Q518-840 545-813.167q27 26.834 27 65.167v286q42 26 66 68.45 24 42.451 24 91.55 0 75.53-53.235 128.765Q555.53-120 480-120Zm.118-59Q531-179 566.5-214.875 602-250.75 602-302q0-37.81-18-70.405T532-420l-20-9v-319q0-13.6-9.2-22.8-9.2-9.2-22.8-9.2-13.6 0-22.8 9.2-9.2 9.2-9.2 22.8v319l-20 9q-34 15-52 47.595T358-302q0 51.25 35.618 87.125Q429.235-179 480.118-179ZM480-302Z"/></svg>
+                        <span>30°C</span>
+                    </div>
+                </div>
+                <div class="wind-speed">
+                    Wind speed
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M461-160q-42 0-71-21.5T351-241q-3-13 6-23t24-10q9 0 17.5 7t14.5 19q6 14 18.5 21t29.5 7q24 0 39-15t15-39q0-24-15-39t-39-15H110q-13 0-21.5-8.5T80-358q0-13 8.5-21.5T110-388h351q50 0 82 32t32 82q0 50-32 82t-82 32ZM110-568q-13 0-21.5-8.5T80-598q0-13 8.5-21.5T110-628h513q35 0 55.5-20.5T699-704q0-35-20.5-55.5T623-780q-28 0-44.5 12.5T555-735q-4 12-12.5 19.5T523-708q-14 0-22.5-10t-5.5-22q10-41 43-70.5t85-29.5q57 0 96.5 39.5T759-704q0 57-39.5 96.5T623-568H110Zm670 321q-12 2-22-6.5T748-276q0-11 7.5-19.5T775-308q22-7 33.5-24t11.5-44q0-35-18.5-53.5T748-448H110q-13 0-21.5-8.5T80-478q0-13 8.5-21.5T110-508h638q59 0 95.5 36.5T880-376q0 51-27 85t-73 44Z"/></svg>
+                        <span>30mph</span>
+                    </div>
+                </div>
+            </div>
+            <div class="forecast">
+                <div class="day">
+                    <div></div>
+                    <h4 class="forecast-temp">20</h4>
+                    <h4 class="forecast-day">Mon</h4>
+                </div>
+                <div class="day">
+                    <div></div>
+                    <h4 class="forecast-temp">20</h4>
+                    <h4 class="forecast-day">Mon</h4>
+                </div>
+                <div class="day">
+                    <div></div>
+                    <h4 class="forecast-temp">20</h4>
+                    <h4 class="forecast-day">Mon</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
