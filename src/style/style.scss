@@ -9,10 +9,10 @@
   'opsz' 40
 }
 
-$morning: linear-gradient(30deg, rgb(244, 238, 179), rgb(123, 174, 171));
+$morning: linear-gradient(30deg, rgb(244, 238, 179), rgb(123, 174, 171)) no-repeat;
 $midday: linear-gradient(70deg, #adcae7, #4f75a1) no-repeat;
-$sunset: linear-gradient(-20deg, rgb(244, 179, 198), rgb(63, 63, 135));
-$night: linear-gradient(-20deg, rgb(91, 85, 139), rgb(20, 20, 49));
+$sunset: linear-gradient(-20deg, rgb(244, 179, 198), rgb(63, 63, 135)) no-repeat;
+$night: linear-gradient(-20deg, rgb(91, 85, 139), rgb(20, 20, 49)) no-repeat;
 
 
 /* Style */
@@ -199,4 +199,45 @@ div.error {
     color: rgb(230, 119, 119);
     font-size: 0.8rem;
     opacity: 0;
+}
+
+@media screen and (max-width: 450px) {
+    html {
+        font-size: 18px;
+    }
+    body {
+        width: 100vw;
+        display: block;
+    }
+
+    div.navbar {
+        display: block;
+        text-align: center;
+        padding: 20px;
+        padding-top: 30px;
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .searchbar {
+            margin: 20px 0px;
+            width: 100%;
+            
+            form {
+                display: flex;
+
+                input {
+                    height: 2.4rem;
+                    flex-basis: 90%;
+                }
+            }
+        }
+
+    }
+
+    div.content {
+        display: block;
+    }
 }

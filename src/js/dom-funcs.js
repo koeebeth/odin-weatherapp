@@ -54,12 +54,12 @@ function renderForecast(data, unit = 'm'){
     const forecastDays = data.forecast.forecastday;
 
     if(unit === 'm'){
-        hi.textContent = forecastDays[0].maxtemp_c;
-        lo.textContent = forecastDays[0].mintemp_c;
+        hi.textContent = Math.round(forecastDays[0].day.maxtemp_c);
+        lo.textContent = Math.round(forecastDays[0].day.mintemp_c);
     }
     else{
-        hi.textContent = forecastDays[0].maxtemp_f;
-        lo.textContent = forecastDays[0].mintemp_f;
+        hi.textContent = Math.round(forecastDays[0].day.maxtemp_f);
+        lo.textContent = Math.round(forecastDays[0].day.mintemp_f);
     }
 
     forecastDiv.textContent = '';
@@ -76,7 +76,7 @@ function renderForecast(data, unit = 'm'){
         weekday.classList.add('forecast-day');
 
         icon.innerHTML = getIcon(day.day.condition.code);
-        tmp.textContent = unit === 'm' ? day.day.avgtemp_c : day.day.avgtemp_f;
+        tmp.textContent = unit === 'm' ? Math.round(day.day.avgtemp_c) : Math.round(day.day.avgtemp_f);
         weekday.textContent = format(Date.parse(day.date), 'ccc');
 
 
