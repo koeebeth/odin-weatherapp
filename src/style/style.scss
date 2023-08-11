@@ -9,6 +9,12 @@
   'opsz' 40
 }
 
+$morning: linear-gradient(30deg, rgb(244, 238, 179), rgb(123, 174, 171));
+$midday: linear-gradient(70deg, #adcae7, #4f75a1) no-repeat;
+$sunset: linear-gradient(-20deg, rgb(244, 179, 198), rgb(63, 63, 135));
+$night: linear-gradient(-20deg, rgb(91, 85, 139), rgb(20, 20, 49));
+
+
 /* Style */
 * {
     margin: 0px;
@@ -26,10 +32,22 @@ html {
 
 body {
     height: 100vh;
-    background: linear-gradient(70deg, #adcae7, #4f75a1) no-repeat;
+    background: $morning;
     font-family: 'DM Sans', sans-serif;
     display: grid;
     grid-template-rows: auto 1fr;
+    &[data-time='morning'] {
+        background: $morning;
+    }
+    &[data-time='midday']{
+        background: $midday;
+    }
+    &[data-time='sunset']{
+        background: $sunset;
+    }
+    &[data-time='night']{
+        background: $night;
+    }
 }
 
 button{
@@ -62,7 +80,7 @@ div.navbar {
 
 
 input#search {
-    background-color: rgba(174, 201, 220, 0.7);
+    background-color: rgba(255, 255, 255, 0.3);
     border-radius: 20px;
     border: none;
     font-size: 1rem;
@@ -123,6 +141,9 @@ div.container {
             text-align: center;
             width: 200px;
             height: 100px;
+            h4 {
+                font-weight: 500;
+            }
         }
 
         svg {
@@ -143,7 +164,7 @@ div.container {
                 margin-left: 15px;
             }
         }
-        .hi-lo {
+        .hi-lo, .datetime {
             font-size: 1rem;
             font-weight: 400;
         }

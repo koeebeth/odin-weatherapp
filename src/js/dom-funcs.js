@@ -1,3 +1,5 @@
+import { format } from 'date-fns';
+
 const windyIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M461-160q-42 0-71-21.5T351-241q-3-13 6-23t24-10q9 0 17.5 7t14.5 19q6 14 18.5 21t29.5 7q24 0 39-15t15-39q0-24-15-39t-39-15H110q-13 0-21.5-8.5T80-358q0-13 8.5-21.5T110-388h351q50 0 82 32t32 82q0 50-32 82t-82 32ZM110-568q-13 0-21.5-8.5T80-598q0-13 8.5-21.5T110-628h513q35 0 55.5-20.5T699-704q0-35-20.5-55.5T623-780q-28 0-44.5 12.5T555-735q-4 12-12.5 19.5T523-708q-14 0-22.5-10t-5.5-22q10-41 43-70.5t85-29.5q57 0 96.5 39.5T759-704q0 57-39.5 96.5T623-568H110Zm670 321q-12 2-22-6.5T748-276q0-11 7.5-19.5T775-308q22-7 33.5-24t11.5-44q0-35-18.5-53.5T748-448H110q-13 0-21.5-8.5T80-478q0-13 8.5-21.5T110-508h638q59 0 95.5 36.5T880-376q0 51-27 85t-73 44Z"/></svg>';
 const nightIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M524-40q-84 0-157.5-32t-128-86.5Q184-213 152-286.5T120-444q0-146 93-257.5T450-840q-18 98 11 192.635 29 94.635 100 165.736 71 71.101 165.5 100.143Q821-352.445 920-370.471q-26 144.206-138 237.338Q670-40 524-40Zm0-60q100 0 182-57t132-145q-90-8-173-41.5T518.5-440Q455-503 422-585.5T381-757q-88 48-144.5 130.5T180-444q0 143.333 100.333 243.667Q380.667-100 524-100Zm-6-340Z"/></svg>';
 const cloudIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M251-160q-88 0-149.5-61.5T40-371q0-78 50-137t127-71q20-97 94-158.5T482-799q112 0 189 81.5T748-522v24q72-2 122 46.5T920-329q0 69-50 119t-119 50H251Zm0-60h500q45 0 77-32t32-77q0-45-32-77t-77-32h-63v-84q0-91-61-154t-149-63q-88 0-149.5 63T267-522h-19q-62 0-105 43.5T100-371q0 63 44 107t107 44Zm229-260Z"/></svg>';
@@ -8,46 +10,72 @@ const sunIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 
 const snowIcon ='<svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M259.859-210Q243-210 231.5-221.641t-11.5-28.5Q220-267 231.641-278.5t28.5-11.5Q277-290 288.5-278.359t11.5 28.5Q300-233 288.359-221.5t-28.5 11.5Zm120 130Q363-80 351.5-91.64 340-103.283 340-120.142t11.641-28.359q11.641-11.5 28.5-11.5t28.359 11.641q11.5 11.641 11.5 28.5T408.359-91.5Q396.718-80 379.859-80Zm120-130Q483-210 471.5-221.641t-11.5-28.5Q460-267 471.641-278.5t28.5-11.5Q517-290 528.5-278.359t11.5 28.5Q540-233 528.359-221.5t-28.5 11.5Zm240 0Q723-210 711.5-221.641t-11.5-28.5Q700-267 711.641-278.5t28.5-11.5Q757-290 768.5-278.359t11.5 28.5Q780-233 768.359-221.5t-28.5 11.5Zm-120 130Q603-80 591.5-91.64 580-103.283 580-120.142t11.641-28.359q11.641-11.5 28.5-11.5t28.359 11.641q11.5 11.641 11.5 28.5T648.359-91.5Q636.718-80 619.859-80ZM290-380q-86.864 0-148.432-61.52Q80-503.04 80-589.835 80-669 136.5-731 193-793 277-799q32-56 84.5-88.5T480.423-920Q571-920 632.5-862.5T708-720q79 4 125.5 53.5T880-550.377Q880-480 830.417-430 780.833-380 710-380H290Zm0-60h420q46.2 0 78.1-32.5 31.9-32.5 31.9-78T788.1-628q-31.9-32-78.1-32h-60v-30q0-71-49.5-120.5T480.212-860q-51.481 0-93.847 27.5Q344-805 324-758l-8 18h-28q-62 2-105 45.393t-43 104.464Q140-528 183.929-484 227.857-440 290-440Zm190-110Z"/></svg>';
 const blizIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m475 0 97-110-80-40 113-130h80l-97 110 80 40L555 0h-80ZM235 0l97-110-80-40 113-130h80l-97 110 80 40L315 0h-80Zm55-340q-86.864 0-148.432-61.52Q80-463.04 80-549.835 80-629 136.5-691 193-753 277-759q32-56 84.5-88.5T480.423-880Q571-880 632.5-822.5T708-680q79 4 125.5 53.5T880-510.377Q880-440 830.417-390 780.833-340 710-340H290Zm0-60h420q46.2 0 78.1-32.5 31.9-32.5 31.9-78T788.1-588q-31.9-32-78.1-32h-60v-30q0-71-49.5-120.5T480.212-820q-51.481 0-93.847 27.5Q344-765 324-718l-8 18h-28q-62 2-105 45.393t-43 104.464Q140-488 183.929-444 227.857-400 290-400Zm190-210Z"/></svg>';
 
-
-
-
 function renderCurWeather(data, unit = 'm') {
     //Render main part
     //Selectors
+    const body = document.querySelector('body');
     const curDiv = document.querySelector('div.container.current');
+    const detailsDiv = document.querySelector('div.curcondition-details')
     const location = curDiv.querySelector('h3.location');
     const temp = curDiv.querySelector('h2.cur-temp');
     const condition = curDiv.querySelector('h3.cur-condition');
     const conditionIcon = curDiv.querySelector('h3.icon');
+    const humidity = detailsDiv.querySelector('div.humidity').querySelector('span');
+    const feelsLike = detailsDiv.querySelector('div.feels-like').querySelector('span');
+    const windSpeed = detailsDiv.querySelector('div.wind-speed').querySelector('span');
+    const dateEl = curDiv.querySelector('h3.datetime');
+
+    //Format date and time
+    const [ localdate, localtime ] = data.location.localtime.split(' ');
+    const localhour =parseInt(localtime.substr(0, 2));
+    const fDate = format(Date.parse(`${localdate}T${localtime}`), 'eee, MMM d, p')
+
+    //Change background color based on time
+    if (localhour >= 0 && localhour < 6){
+        body.dataset.time = 'night';
+    }
+    else if(localhour >= 6 && localhour < 12){
+        body.dataset.time = 'morning';
+    }
+    else if(localhour >= 12 && localhour < 18){
+        body.dataset.time = 'midday';
+    }
+    else{
+        body.dataset.time = 'sunset';
+    }
 
     //Change text content
     location.textContent = `${data.location.name}, ${data.location.country}`;
     temp.textContent = unit === 'm' ? `${Math.round(data.current.temp_c)}°C` : `${Math.round(data.current.temp_f)}°F`;
     condition.textContent = data.current.condition.text;
+    conditionIcon.innerHTML = getIcon(data.current.condition.code);
+    humidity.textContent = `${data.current.humidity}%`;
+    feelsLike.textContent = unit = 'm' ? `${Math.round(data.current.feelslike_c)}°C` : `${Math.round(data.current.feelslike_f)}°F`;
+    windSpeed.textContent = unit = 'm' ? `${Math.round(data.current.wind_kph)}km/h` : `${Math.round(data.current.wind_mph)}mph`;
+    dateEl.textContent = fDate;
 
-    const conCode = data.current.condition.code;
-    switch (conCode) {
+}
+
+
+
+function getIcon(code){
+    switch (code) {
         case 1000:
-            conditionIcon.innerHTML = sunIcon;
-            break;
+            return sunIcon;
         case 1003:
-            conditionIcon.innerHTML = partCloudIcon;
-            break;
+            return partCloudIcon;
         case 1006:
         case 1009:
-            conditionIcon.innerHTML = cloudIcon;
-            break;
+            return cloudIcon;
         case 1030:
         case 1135:
-            conditionIcon.innerHTML = fogIcon;
-            break;
+            return fogIcon;
         case 1117: 
         case 1273: 
         case 1276: 
         case 1279: 
         case 1283:
-            conditionIcon.innerHTML = blizIcon;
-            break;
+            return blizIcon;
         case 1063:
         case 1069:
         case 1150: 
@@ -64,12 +92,10 @@ function renderCurWeather(data, unit = 'm') {
         case 1246: 
         case 1249: 
         case 1252:
-            conditionIcon.innerHTML = rainIcon;
-            break;
+            return rainIcon;
         default:
-            conditionIcon.innerHTML = snowIcon;
+            return snowIcon;
     }
-
 }
 
 export {renderCurWeather}

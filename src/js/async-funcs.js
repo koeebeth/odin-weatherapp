@@ -1,9 +1,17 @@
 async function getCurWeather(location){
-    let weather = await fetch(`http://api.weatherapi.com/v1/current.json?key=2dba2dd8ec534059a89172222230908&q=${location}`)
-    .then((response => response.json()))
+    const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=2dba2dd8ec534059a89172222230908&q=${location}`)
     .catch((error) => console.log(error));
+    const weather = await response.json();
+
     return weather;
 }
 
+async function getForecast(location){
+    const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=2dba2dd8ec534059a89172222230908&q=${location}&days=3`)
+    .catch((error) => console.log(error));
+    const forecast = await response.json();
+    return forecast;
+}
 
-export {getCurWeather}
+
+export {getCurWeather, getForecast}
