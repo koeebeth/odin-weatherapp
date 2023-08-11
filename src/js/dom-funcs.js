@@ -17,21 +17,21 @@ function renderCurWeather(data, unit = 'm') {
 
     //Format date and time
     const [ localdate, localtime ] = data.location.localtime.split(' ');
-    const localhour =parseInt(localtime.substr(0, 2));
-    const fmtedDate = format(Date.parse(`${localdate}T${localtime}`), 'eeee, MMM d, p')
+    const localhour = parseInt(localtime.substr(0, 2));
+    const fmtedDate = format(Date.parse(data.location.localtime), 'eeee, MMM d, p')
 
     //Change background color based on time
-    if (localhour >= 0 && localhour < 6){
-        body.dataset.time = 'night';
-    }
-    else if(localhour >= 6 && localhour < 12){
+    if(localhour >= 6 && localhour < 12){
         body.dataset.time = 'morning';
     }
     else if(localhour >= 12 && localhour < 18){
         body.dataset.time = 'midday';
     }
-    else{
+    else if(localhour >= 18 && localhour < 21){
         body.dataset.time = 'sunset';
+    }
+    else {
+        body.dataset.time = 'night';
     }
 
     //Change text content
@@ -40,8 +40,8 @@ function renderCurWeather(data, unit = 'm') {
     condition.textContent = data.current.condition.text;
     conditionIcon.innerHTML = getIcon(data.current.condition.code);
     humidity.textContent = `${data.current.humidity}%`;
-    feelsLike.textContent = unit = 'm' ? `${Math.round(data.current.feelslike_c)}°C` : `${Math.round(data.current.feelslike_f)}°F`;
-    windSpeed.textContent = unit = 'm' ? `${Math.round(data.current.wind_kph)}km/h` : `${Math.round(data.current.wind_mph)}mph`;
+    feelsLike.textContent = unit === 'm' ? `${Math.round(data.current.feelslike_c)}°C` : `${Math.round(data.current.feelslike_f)}°F`;
+    windSpeed.textContent = unit === 'm' ? `${Math.round(data.current.wind_kph)}km/h` : `${Math.round(data.current.wind_mph)}mph`;
     dateEl.textContent = fmtedDate;
 
 }
@@ -51,16 +51,18 @@ function renderForecast(data, unit = 'm'){
     const hi = document.querySelector('span.hi');
     const lo = document.querySelector('span.lo');
     const forecastDiv = document.querySelector('.forecast');
-    const forecastDays = data.forecastday;
+    const forecastDays = data.forecast.forecastday;
 
     if(unit === 'm'){
-        hi.textContent = forecastDays.day[0].maxtemp_c;
-        lo.textContent = forecastDays.day[0].mintemp_c;
+        hi.textContent = forecastDays[0].maxtemp_c;
+        lo.textContent = forecastDays[0].mintemp_c;
     }
     else{
-        hi.textContent = forecastDays.day[0].maxtemp_f;
-        lo.textContent = forecastDays.day[0].mintemp_f;
+        hi.textContent = forecastDays[0].maxtemp_f;
+        lo.textContent = forecastDays[0].mintemp_f;
     }
+
+    forecastDiv.textContent = '';
 
     for (const day of forecastDays){
         const dayDiv = document.createElement('div');
@@ -75,7 +77,7 @@ function renderForecast(data, unit = 'm'){
 
         icon.innerHTML = getIcon(day.day.condition.code);
         tmp.textContent = unit === 'm' ? day.day.avgtemp_c : day.day.avgtemp_f;
-        weekday.textContent = format(Date.parse(day.date_epoch), ccc);
+        weekday.textContent = format(Date.parse(day.date), 'ccc');
 
 
         dayDiv.appendChild(icon);
@@ -85,7 +87,6 @@ function renderForecast(data, unit = 'm'){
     }
 
 }
-
 
 
 //Get svg icon from code
@@ -139,4 +140,4 @@ function getIcon(code){
     }
 }
 
-export {renderCurWeather}
+export {renderCurWeather, renderForecast}
