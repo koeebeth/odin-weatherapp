@@ -16,7 +16,7 @@ function renderCurWeather(data, unit = 'm') {
     const dateEl = curDiv.querySelector('h3.datetime');
 
     //Format date and time
-    const [ localdate, localtime ] = data.location.localtime.split(' ');
+    const [, localtime ] = data.location.localtime.split(' ');
     const localhour = parseInt(localtime.substr(0, 2));
     const fmtedDate = format(Date.parse(data.location.localtime), 'eeee, MMM d, p')
 

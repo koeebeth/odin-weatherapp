@@ -198,12 +198,13 @@ div.error {
     opacity: 0;
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 760px) {
     html {
         font-size: 18px;
     }
     body {
         width: 100vw;
+        height: auto;
         display: block;
     }
 
@@ -234,7 +235,31 @@ div.error {
 
     }
 
+    div.container {
+        &.details {
+            display: block;
+            .curcondition-details {
+                margin: 30px;
+                gap: 0px;
+                height: 200px;
+                justify-items: center;
+                align-items: center;
+
+                span {
+                    font-size: 1.4rem;
+                }
+            }
+            .forecast {
+                margin: 30px auto;
+                justify-content: space-between;
+                width: 60%;
+                min-width: 250px;
+            }
+        }
+    }
+
     div.content {
         display: block;
+        height: auto;
     }
 }
