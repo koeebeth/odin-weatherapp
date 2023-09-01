@@ -17,8 +17,8 @@ function renderCurWeather(data, unit = 'm') {
 
     //Format date and time
     const [, localtime ] = data.location.localtime.split(' ');
-    const localhour = parseInt(localtime.substr(0, 2));
-    const fmtedDate = format(Date.parse(data.location.localtime), 'eeee, MMM d, p')
+    const localhour = parseInt(localtime.split(':')[0]);
+    const fmtedDate = format(new Date(data.location.localtime_epoch), 'eeee, MMM d, p')
 
     //Change background color based on time
     if(localhour >= 6 && localhour < 12){

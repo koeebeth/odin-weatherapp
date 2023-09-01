@@ -16,11 +16,13 @@ const exData = {"location":{"name":"Tokyo","region":"Tokyo","country":"Japan","l
 window.onload = () => {
     asyncf.getCurWeather('auto:ip')
     .then((res) => {
+        console.log(res)
         domf.renderCurWeather(res);
         tempData.current = res;
     });
     asyncf.getForecast('auto:ip')
     .then((res) => {
+        console.log(res)
         domf.renderForecast(res);
         tempData.forecast = res;
     });
